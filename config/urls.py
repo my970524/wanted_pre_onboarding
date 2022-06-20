@@ -15,11 +15,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from recruit.views import AdListCreateView, AdDetailUpdateDestroyView
+from recruit.views import AdListCreateView, AdDetailUpdateDeleteView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api-auth/', include('rest_framework.urls')),
     path('recruit/', AdListCreateView.as_view()),
-    path('recruit/<int:pk>/', AdDetailUpdateDestroyView.as_view()),
+    path('recruit/<int:pk>/', AdDetailUpdateDeleteView.as_view()),
 ]
