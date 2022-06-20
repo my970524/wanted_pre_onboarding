@@ -1,6 +1,6 @@
 from dataclasses import fields
 from rest_framework.serializers import ModelSerializer, SerializerMethodField
-from .models import Company, Advertisement
+from .models import Advertisement
 
 
 class AdSerializer(ModelSerializer):
