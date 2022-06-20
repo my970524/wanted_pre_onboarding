@@ -2,14 +2,14 @@ from django.shortcuts import render
 from rest_framework import generics
 from rest_framework.response import Response
 
-from .serializers import AdSerializer, AdListSerializer
+from .serializers import AdSerializer, AdListSerializer, AdDetailSerializer
 from .models import Advertisement
 
 # Create your views here.
 class AdListCreateView(generics.ListCreateAPIView):
     def get_queryset(self):
         queryset = Advertisement.objects.select_related('company_id').all()
-        
+
         return queryset
 
     def get_serializer_class(self):
@@ -38,5 +38,9 @@ class AdListCreateView(generics.ListCreateAPIView):
 
 class AdUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Advertisement.objects.all()
-    serializer_class = AdSerializer
+    def get_serializer_class(self):
+        if self.request.method == 'GET':
+            return AdDetailSerializer
+        else:
+            return AdSerializer
 

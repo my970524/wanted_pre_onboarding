@@ -26,3 +26,8 @@ class AdListSerializer(ModelSerializer):
         model = Advertisement
         exclude = ['content', 'company_id']
     
+
+class AdDetailSerializer(AdListSerializer):
+    class Meta(AdListSerializer.Meta):
+        exclude = ['company_id']
+    
