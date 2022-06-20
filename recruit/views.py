@@ -2,13 +2,20 @@ from django.shortcuts import render
 from rest_framework import generics
 from rest_framework.response import Response
 
-from .serializers import AdSerializer
+from .serializers import AdSerializer, AdListSerializer
 from .models import Advertisement
 
 # Create your views here.
-class AdCreateView(generics.CreateAPIView):
-    serializer_class = AdSerializer
+class AdListCreateView(generics.ListCreateAPIView):
+    queryset = Advertisement.objects.all()
+
+    def get_serializer_class(self):
+        if self.request.method == 'GET':
+            return AdListSerializer
+        else:
+            return AdSerializer
 
 class AdUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Advertisement.objects.all()
     serializer_class = AdSerializer
+
