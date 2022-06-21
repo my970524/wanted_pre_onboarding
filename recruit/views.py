@@ -37,10 +37,11 @@ class AdListCreateView(generics.ListCreateAPIView):
 
 
 class AdDetailUpdateDeleteView(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Advertisement.objects.all()
+    queryset = Advertisement.objects.select_related('company_id').all()
+
     def get_serializer_class(self):
         if self.request.method == 'GET':
             return AdDetailSerializer
         else:
             return AdSerializer
-
+    
