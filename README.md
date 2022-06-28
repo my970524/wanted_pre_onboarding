@@ -1,4 +1,4 @@
-# wanted_pre_onboarding 사전과제
+# wanted_pre_onboarding 사전과제!
 
 ## ❗️ 프로젝트 소개
 '원티드'와 같은 사이트에서 필요한 기능들의 api를 개발하였습니다. <br>
